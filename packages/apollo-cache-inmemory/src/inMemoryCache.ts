@@ -26,14 +26,12 @@ import { ObjectCache } from './objectCache';
 
 export interface InMemoryCacheConfig extends ApolloReducerConfig {
   resultCaching?: boolean;
-  freezeResults?: boolean;
 }
 
 const defaultConfig: InMemoryCacheConfig = {
   dataIdFromObject: defaultDataIdFromObject,
   addTypename: true,
   resultCaching: true,
-  freezeResults: false,
 };
 
 export function defaultDataIdFromObject(result: any): string | null {
@@ -144,7 +142,6 @@ export class InMemoryCache extends ApolloCache<NormalizedCacheObject> {
 
     this.storeReader = new StoreReader({
       cacheKeyRoot: this.cacheKeyRoot,
-      freezeResults: config.freezeResults,
       possibleTypes: this.possibleTypes,
     });
 
